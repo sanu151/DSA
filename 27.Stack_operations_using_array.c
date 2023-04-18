@@ -8,7 +8,7 @@ typedef struct{
 }stack;
 
 void displayStack(stack * ptr){
-    printf("\nStack Elements : [");
+    printf("\nStack Elements : [ ");
     for(int i=0; i<=ptr->top; i++){
         printf("%d ", ptr->arr[i]);
     }
@@ -29,7 +29,7 @@ int isFull(stack *ptr){
 
 void push(stack * ptr, int data){
     if(isFull(ptr))
-        printf("Stack Overflow !\n");
+        printf("Stack Overflow ! Cann't push %d in the stack.\n", data);
     else{
         ptr->top++;
         ptr->arr[ptr->top] = data;
@@ -48,14 +48,21 @@ int pop(stack * ptr){
     }
 }
 
+int peek(stack * ptr, int pos){
+    if((ptr->top - pos + 1) < 0){
+        return -1;
+    }
+    return (ptr->arr[ptr->top - pos + 1]);
+}
+
 int main(){
     stack * s = (stack *)malloc(sizeof(stack));
     s->stackSize = 8;
     s->top = -1;
     s->arr = (int *)malloc(s->stackSize * sizeof(int));
 
-    int n, element, popElement;
-    printf("*** STACK OPERATIONS MENU***\n______________________________\nPush : 1\tPull : 2\nDisplay Stack : 3\tExit : 0\n");
+    int n = -1, a = -1, pos, element, popElement, peekElement;
+    printf("*** STACK OPERATIONS MENU***\n______________________________\nPush : 1\tPull : 2\tPeek Element : 3\nDisplay Stack : 4\tExit : 0\n");
     while(n != 0){
         printf("Enter your choice : ");
         scanf("%d", &n);
@@ -73,6 +80,28 @@ int main(){
                 printf("POP element : %d\n", popElement);
             break;
         case 3:
+            printf("=== MENU OF PICK OPERATION ===\n________________________________\nPeek Element from a position : 1\nPeek all Element : 2\n");
+            printf("Enter your choice : ");
+            scanf("%d", &a);
+            if(a == 1){
+                printf("Enter a position : ");
+                scanf("%d", &pos);
+                peekElement = peek(s, pos);
+                if(peekElement == -1)
+                    printf("%d is not a valid position to peek element\n", pos);
+                else
+                    printf("Element in %d position is : %d\n", pos, peekElement);
+            }
+            else if(a == 2){
+                for(int i = 1; i <= s->top+1; i++){
+                    printf("Element in %d : %d\n", i, peek(s,i));
+                }
+                printf("\n");
+            }
+            else
+                printf("\nWrong Selection !\n");
+            break;
+        case 4:
             displayStack(s);
             break;
         case 0:
@@ -82,5 +111,6 @@ int main(){
             printf("Wrong Selection! Try again\n");
         }
     }
+    getchar();
     return 0;
 }
