@@ -47,7 +47,7 @@ void pop(stack * top){
         printf("Stack is Empty!\n");
     else{
         stack * x = top;
-        int item = x->data;
+        int item = top->data;
         top = top->next;
         free(x);
         printf("Popped item : %d\n", item);
