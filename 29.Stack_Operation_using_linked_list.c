@@ -48,8 +48,12 @@ stack * pop(stack * top){
     }
     else{
         stack * x = top;
+<<<<<<< HEAD
         int item = x->data;
         printf("Popped Item : %d", item);
+=======
+        int item = top->data;
+>>>>>>> a067f8858d672e6e7bd95ed38eb83eafefafabfa
         top = top->next;
         free(x);
     }
