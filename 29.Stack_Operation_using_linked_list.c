@@ -42,16 +42,18 @@ stack * push(stack * top, int data){
     }
 }
 
-void pop(stack * top){
-    if(isEmpty(top))
-        printf("Stack is Empty!\n");
+stack * pop(stack * top){
+    if(isEmpty(top)){
+        printf("Stack is Empty!");
+    }
     else{
         stack * x = top;
         int item = x->data;
+        printf("Popped Item : %d", item);
         top = top->next;
         free(x);
-        printf("Popped item : %d\n", item);
     }
+    return top;
 }
 
 int main(){
@@ -61,7 +63,8 @@ int main(){
     top = push(top, 2);
     top = push(top, 34);
     displayStack(top);
-    pop(top);
+    top = pop(top);
+
     displayStack(top);
 
     return 0;
