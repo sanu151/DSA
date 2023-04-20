@@ -56,16 +56,30 @@ stack * pop(stack * top){
     return top;
 }
 
+int peek(stack * top, int pos){
+    stack * ptr = top;
+    for(int i = 0; i < pos-1 && ptr != NULL; i++){
+        ptr = ptr->next;
+    }
+    if(ptr != NULL)
+        return ptr->data;
+    return -1;
+}
+
 int main(){
     stack * top = NULL;
 
     top = push(top, 12);
     top = push(top, 2);
     top = push(top, 34);
-    displayStack(top);
+    top = push(top, 46);
+    top = push(top, 23);
     top = pop(top);
-
+    top = push(top, 98);
+    top = push(top, 77);
     displayStack(top);
+    int pos = 4;
+    printf("Element in Position %d is : %d\n", pos, peek(top, pos));
 
     return 0;
 }
