@@ -39,4 +39,6 @@ void merge(int *A, low, mid, high){
     }
 }
 
-void mergeSort(int *A)
+void mergeSort(int *A, int low, int high){
+    int mid;
+    
