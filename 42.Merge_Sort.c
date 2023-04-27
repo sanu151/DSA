@@ -42,3 +42,22 @@ void merge(int *A, low, mid, high){
 void mergeSort(int *A, int low, int high){
     int mid;
     
+    if(low < high){
+        mid = (low+high)/2;
+        mergeSort(A, low, mid);
+        mergeSort(A, mid+1, high);
+        merge(A, low, mid, high);
+    }
+}
+
+int main(){
+    int arr[] = {7, 9, 3, 6, 1, 4, 2, 5, 8};
+    int n = sizeof(arr)/sizeof(int);
+    printf("Array before sort : ");
+    printArray(A, n);
+    quickSort(A, 0, n-1);
+    printf("Array after sort  : ");
+    printArray(A, n);
+    
+    return 0;
+}
