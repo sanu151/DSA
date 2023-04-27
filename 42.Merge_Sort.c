@@ -9,8 +9,8 @@ void printArray(int *A, int n){
 
 void merge(int *A, int low, int mid, int high){
     int i, j, k;
-    int B[high-low+1];
-    i = low, j = mid+1, high = low;
+    int B[100];
+    i = low, j = mid+1, k = low;
 
     while(i <= mid && j <= high){
         if(A[i] < A[j]){
@@ -24,17 +24,17 @@ void merge(int *A, int low, int mid, int high){
             k++;
         }
     }
-    while(i<mid){
+    while(i<=mid){
         B[k] = A[i];
         i++;
         j++;
     }
-    while(j<high){
+    while(j<=high){
         B[k] = A[j];
         j++;
         k++;
     }
-    for(i=0; i<=high; i++){
+    for(i=low; i<=high; i++){
         A[i] = B[i];
     }
 }
