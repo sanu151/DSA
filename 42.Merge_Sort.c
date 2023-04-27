@@ -10,10 +10,10 @@ void printArray(int *A, int n){
 
 void merge(int *A, int low, int mid, int high){ // Merge and Sort Left and Right part respect of mid in the array
     int i, j, k;
-    int B[[high - low +1]; // Array for storing sorted values
+    int B[100]; // Array for storing sorted values
     i = low, j = mid+1, k = low;
-    
-    //Sort and marge passes 
+
+    //Sort and marge passes
     while(i <= mid && j <= high){
         if(A[i] < A[j]){
             B[k] = A[i];
@@ -28,7 +28,7 @@ void merge(int *A, int low, int mid, int high){ // Merge and Sort Left and Right
     }
     // Remaining elements add in B array from A array
     while(i<=mid){ // For Left Side of the array A
-        B[k] = A[i]; 
+        B[k] = A[i];
         i++;
         k++;
     }
@@ -37,7 +37,7 @@ void merge(int *A, int low, int mid, int high){ // Merge and Sort Left and Right
         j++;
         k++;
     }
-    
+
     // Copying all elements from array B to array A
     for(i=low; i<=high; i++){
         A[i] = B[i];
@@ -46,9 +46,9 @@ void merge(int *A, int low, int mid, int high){ // Merge and Sort Left and Right
 
 void mergeSort(int *A, int low, int high){
     int mid;
-    
+
     if(low < high){
-        mid = (low+high)/2; 
+        mid = (low+high)/2;
         mergeSort(A, low, mid); // Recursive call mergeSort function for Left side array
         mergeSort(A, mid+1, high); // Recursive call mergeSort function for Right side array
         merge(A, low, mid, high); // Marging both the array.
@@ -63,6 +63,6 @@ int main(){
     mergeSort(arr, 0, n-1); // Low = index 0 and high = index 8 , array Length = 9
     printf("Array after sort  : ");
     printArray(arr, n);
-    
+
     return 0;
 }
