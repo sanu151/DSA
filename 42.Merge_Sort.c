@@ -7,10 +7,10 @@ void printArray(int *A, int n){
     printf("\n");
 }
 
-void merge(int *A, low, mid, high){
+void merge(int *A, int low, int mid, int high){
     int i, j, k;
     int B[high-low+1];
-    int i = low, j = mid+1, high = low,
+    i = low, j = mid+1, high = low;
 
     while(i <= mid && j <= high){
         if(A[i] < A[j]){
@@ -32,7 +32,7 @@ void merge(int *A, low, mid, high){
     while(j<high){
         B[k] = A[j];
         j++;
-        K++;
+        k++;
     }
     for(i=0; i<=high; i++){
         A[i] = B[i];
@@ -54,10 +54,10 @@ int main(){
     int arr[] = {7, 9, 3, 6, 1, 4, 2, 5, 8};
     int n = sizeof(arr)/sizeof(int);
     printf("Array before sort : ");
-    printArray(A, n);
-    quickSort(A, 0, n-1);
+    printArray(arr, n);
+    mergeSort(arr, 0, n-1);
     printf("Array after sort  : ");
-    printArray(A, n);
+    printArray(arr, n);
     
     return 0;
 }
