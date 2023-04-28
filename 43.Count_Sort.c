@@ -21,23 +21,25 @@ int max_number(int A[], int n){
     return maxNum;
 }
 
-void countSort(int A[], int n){
+void countSort(int *A, int n){
     int max = max_number(A, n);
+    int i, j;
 
     int * count = (int *)malloc((max+1) * sizeof(int)); // Dynamic allocation of memory for count array
 
     // initialize all element in count memory to 0
-    for(int i=0; i <= max+1; i++){
+    /*for(i=0; i <= max+1; i++){
         count[i] =0;
-    }
+    }*/
+     memset(count, 0, (max+1) * sizeof(int));
 
     //Increment the corresponding index in the count array
-    for(int i=0; i < n; i++){
+    for(i=0; i < n; i++){
         count[A[i]] += 1;
     }
 
-    int i = 0; // using index for count array
-    int j = 0; // using index for given A array
+    i = 0; // using index for count array
+    j = 0; // using index for given A array
     // Copy index numbers of count array as Value in given array A
     while(i <= max){
         if(count[i] > 0){
