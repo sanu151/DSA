@@ -22,8 +22,8 @@ Node * createNode(int data){
 void preOrder(Node * root){
     if(root != NULL){
         printf("%d ", root->data);  // Print root node data
-        preOrder(root->left);       // recursive call for printing left node of root
-        preOrder(root->right);      // recursive call for printing right node of root
+        preOrder(root->left);       // recursive call for travers left sub tree of root
+        preOrder(root->right);      // recursive call for travers right sub tree of root
     }
 }
 
