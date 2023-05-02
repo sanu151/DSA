@@ -1,5 +1,5 @@
 #include<stdio.h>
-#include<malloc.h>
+#include<stdlib.h>
 
 // Node structure for BST
 typedef struct
@@ -31,34 +31,46 @@ void inOrder(Node * root)
     }
 }
 
-// Insert Node in BST
-void insertNode(Node * root, int key)
+Node * inOrderPredecssor(Node *root)
 {
-    Node * prev = NULL;
-    while(root != NULL)
+    root = root->left;
+    while(root->right != NULL)
     {
-        prev = root;
-        if(key == root->data)
-        {
-            printf("%d is already in BST", key);
-            return;
-        }
-        else if(key < root->data)
-            root = root->left;
-        else
-            root = root->right;
+        root = root->right;
     }
-    Node * n = createNode(key);
-    if(key < prev->data)
+    return root;
+}
+
+// Insert Node in BST
+Node * deleteNode(Node * root, int key)
+{
+    Node * ipre;
+    if(root == NULL)
+        return NULL;
+
+    // Searching for the node to be deleted
+    if(root->left == NULL && root->right == NULL)
     {
-        prev->left = n;
-        printf("%d inserted as left child of %d\n", key, prev->data);
+        free(root);
+        return NULL;
+
     }
+    if(key < root->data)
+    {
+        root->left = deleteNode(root->left , key);
+    }
+    else if(key > root->data)
+    {
+        root->right = deleteNode(root->right, key);
+    }
+    // deleting strategy when the node is found
     else
     {
-        prev->right = n;
-        printf("%d inserted as right child of %d\n", key, prev->data);
+        ipre = inOrderPredecssor(root);
+        root->data = ipre->data;
+        root->left = deleteNode(root->left, ipre->data);
     }
+    return root;
 }
 
 int main()
@@ -80,9 +92,9 @@ int main()
     p3->left = p6;
     p3->right = p7;
 
-    insertNode(p, 5);
+    inOrder(p);
     printf("\n");
-    insertNode(p, 2);
+    deleteNode(p, 12);
     printf("\n");
     inOrder(p);
 
