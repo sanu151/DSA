@@ -31,6 +31,7 @@ void inOrder(Node * root)
     }
 }
 
+// For In order Predecessor found
 Node * inOrderPredecssor(Node *root)
 {
     root = root->left;
