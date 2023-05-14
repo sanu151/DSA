@@ -1,13 +1,13 @@
 #include<stdio.h>
 #define SIZE 5
 
-struct Stack
+struct stack
 {
     int top;
     int data[SIZE];
 };
 
-typedef Stack STACK;
+typedef struct stack STACK;
 
 // Push Operation
 void push(STACK * s, int item)
@@ -24,7 +24,7 @@ int pop(STACK * s)
     if(s->top == -1)
     {
         printf("\nStack Underflow\n");
-        return -1;
+        return;
     }
     else
         return s->data[(s->top)--];
@@ -37,7 +37,7 @@ void display(STACK s)
     else
     {
         printf("\nStack Elemets : \n");
-        for(int i= s->top; i >= 0; i--)
+        for(int i= s.top; i >= 0; i--)
         {
             printf("%d\n", s.data[i]);
         }
@@ -48,6 +48,7 @@ int main()
 {
     int ch, item, del;
     STACK s;
+    s.top = -1;
 
     for(;;)
     {
@@ -61,14 +62,23 @@ int main()
         switch(ch)
         {
         case 1:
-            printf("/nEnter element to Push : ");
+            printf("\nEnter element to Push : ");
             scanf("%d", &item);
             push(&s, item);
             break;
         case 2:
-            pop(&s);
-
-
+            del = pop(&s);
+            printf("\nPoPed element : %d", del);
+            break;
+        case 3:
+            display(s);
+            break;
+        case 4:
+            exit(0);
+            break;
+        default:
+            printf("\nWrong selection! Try again\n");
         }
     }
+    return 0;
 }
